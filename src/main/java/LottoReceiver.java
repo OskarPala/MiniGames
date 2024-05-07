@@ -11,12 +11,14 @@ public class LottoReceiver {
         Set<Integer> numbersFromUser = new HashSet<>();
 
 
-        while (numbersFromUser.size() < 6) {
+        while (lowerThanNumbersInDrawn(numbersFromUser)) {
 
-            int inputNumbersCounter = 6 - numbersFromUser.size();
+            int inputNumbersCounter = LottoGameConfigurator.NUMBERS_IN_DRAW - numbersFromUser.size();
             System.out.printf("Give %s numbers %n", inputNumbersCounter);
             while (!scanner.hasNextInt()) {
-                System.out.println("Enter an integer in a range 1 and 99");
+                System.out.printf("Enter an integer in a range %s and %s%n" ,
+                        LottoGameConfigurator.LOWER_RANGE,
+                        LottoGameConfigurator.HIGH_RANGE);
                 scanner.next();
             }
             int givenNumber = scanner.nextInt();
@@ -28,13 +30,26 @@ public class LottoReceiver {
     }
 
     private void validateInputNumber(int givenNumber, Set<Integer> numbersFromUser) {
-        if (givenNumber > 0 && givenNumber < 100) {
+        if (isInRange(givenNumber)) {
             numbersFromUser.add(givenNumber);
         } else {
-            System.out.printf("You provide %s, Please provide number beetwen 1 and 99 %n", givenNumber);
+            System.out.printf("You provide %s, Please provide number beetwen %s and %s %n",
+                    givenNumber,
+                    LottoGameConfigurator.LOWER_RANGE,
+                    LottoGameConfigurator.HIGH_RANGE);
         }
 
 
     }
 
+    private static boolean lowerThanNumbersInDrawn(Set<Integer> numbersFromUser) {
+        return numbersFromUser.size() < LottoGameConfigurator.NUMBERS_IN_DRAW;
+    }
+
+    private static boolean isInRange(int givenNumber) {
+        return givenNumber >= LottoGameConfigurator.LOWER_RANGE
+                && givenNumber <= LottoGameConfigurator.HIGH_RANGE;
+    }
+
 }
+
