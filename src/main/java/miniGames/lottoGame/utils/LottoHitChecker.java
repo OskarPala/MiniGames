@@ -1,3 +1,5 @@
+package miniGames.lottoGame.utils;
+
 import java.util.HashSet;
 import java.util.Set;
 

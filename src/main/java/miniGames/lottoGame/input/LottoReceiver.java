@@ -1,3 +1,7 @@
+package miniGames.lottoGame.input;
+
+import miniGames.lottoGame.config.LottoGameConfigurator;
+
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -25,7 +29,6 @@ public class LottoReceiver {
             validateInputNumber(givenNumber, numbersFromUser);
             System.out.println("Your given numbers: "+numbersFromUser);
         }
-        scanner.close();
         return numbersFromUser;
     }
 

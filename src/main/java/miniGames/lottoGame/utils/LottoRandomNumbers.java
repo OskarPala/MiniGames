@@ -1,3 +1,7 @@
+package miniGames.lottoGame.utils;
+
+import miniGames.lottoGame.config.LottoGameConfigurator;
+
 import java.security.SecureRandom;
 import java.util.Set;
 
