@@ -4,6 +4,7 @@ import miniGames.lottoGame.input.LottoReceiver;
 import miniGames.lottoGame.model.LottoResult;
 import miniGames.model.Result;
 
+import java.util.Scanner;
 import java.util.Set;
 
 public class LottoResultService implements Result<LottoResult> {
@@ -18,8 +19,9 @@ public class LottoResultService implements Result<LottoResult> {
     }
 
     private static Set<Integer> getUserNumber() {
+        Scanner scanner = new Scanner(System.in);
         LottoReceiver lottoReceiver = new LottoReceiver();
-        return lottoReceiver.getNumbersFromUser();
+        return lottoReceiver.getNumbersFromUser(scanner);
     }
 
 }

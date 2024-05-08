@@ -11,7 +11,7 @@ public class MiniGameChooser {
         Scanner scanner = new Scanner(System.in);
         System.out.printf("%nChose game by press game number and Enter %n");
         printGame(LottoGameConfigurator.GAME_ID, LottoGameConfigurator.GAME_NAME);
-        System.out.println("To END input \"EXIT\" ");
+        System.out.println("To End game input \"EXIT\" ");
 
         while (scanner.hasNext()) {
             String command = scanner.nextLine();

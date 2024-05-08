@@ -1,7 +1,7 @@
 package miniGames.lottoGame.model;
 
 import miniGames.lottoGame.input.MiniGameChooser;
-import miniGames.lottoGame.output.LottoResultPrinter;
+import miniGames.lottoGame.utils.LottoResultPrinter;
 import miniGames.lottoGame.utils.LottoResultService;
 import miniGames.model.Game;
 
