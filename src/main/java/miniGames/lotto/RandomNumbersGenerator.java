@@ -1,14 +1,13 @@
-package miniGames.lottoGame.utils;
-
-import miniGames.lottoGame.config.LottoGameConfigurator;
+package miniGames.lotto;
 
 import java.security.SecureRandom;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
 
-public class LottoRandomNumbers {
-    public static Set<Integer> generateSixRandomNumbers() {
+class RandomNumbersGenerator implements NumbersGenerator {
+
+    public Set<Integer> generateRandomNumbers() {
         SecureRandom secureRandom = new SecureRandom();
         return secureRandom.ints(
                         LottoGameConfigurator.NUMBERS_IN_DRAW,
@@ -17,5 +16,4 @@ public class LottoRandomNumbers {
                 .boxed()
                 .collect(toSet());
     }
-
 }
