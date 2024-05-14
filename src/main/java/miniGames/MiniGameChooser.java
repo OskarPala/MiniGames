@@ -6,7 +6,6 @@ import miniGames.lotto.LottoGameConfigurator;
 import java.util.Scanner;
 
 public class MiniGameChooser {
-
     public static void gameChooser() {
         Scanner scanner = new Scanner(System.in);
         System.out.printf("%nChose game by press game number and Enter %n");
@@ -37,7 +36,3 @@ public class MiniGameChooser {
         System.out.printf("%s  %s  %n", id, name);
     }
 }
-
-
-
-
