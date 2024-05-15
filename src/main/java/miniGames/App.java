@@ -1,8 +1,11 @@
 package miniGames;
 
+import miniGames.lotto.LottoGame;
+
 public class App {
     public static void main(String[] args) {
-        MiniGameChooser.gameChooser();
+        LottoGame lottoGame = new LottoGame();
+        lottoGame.startGame();
     }
 }
 

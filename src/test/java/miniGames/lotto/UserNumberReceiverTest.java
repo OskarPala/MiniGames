@@ -19,7 +19,7 @@ public class UserNumberReceiverTest {
         Set<Integer> expectedNumbers = new HashSet<>((Arrays.asList(1, 2, 3, 4, 5, 6)));
         String givenNumbers = "1 2 3 4 5 6 ";
         Scanner userNumbers = mockScannerIn(givenNumbers);
-        NumberReceiver lottoReceiver = new UserNumberReceiver(userNumbers);
+        NumberReceiver lottoReceiver = new UserNumberReceiver(userNumbers,new UserMessagePrinter(),new InputNumberProcessor());
         //when
         final Set<Integer> userInputNumbers = lottoReceiver.getNumbers();
         //then
@@ -32,7 +32,7 @@ public class UserNumberReceiverTest {
         Set<Integer> expectedNumbers = new HashSet<>((Arrays.asList(1, 2, 3, 4, 5, 6)));
         String givenNumbers = "1 2 345 3 4 5 6 ";
         Scanner userNumbers = mockScannerIn(givenNumbers);
-        NumberReceiver lottoReceiver = new UserNumberReceiver(userNumbers);
+        NumberReceiver lottoReceiver = new UserNumberReceiver(userNumbers,new UserMessagePrinter(),new InputNumberProcessor());
         //when
         final Set<Integer> userInputNumbers = lottoReceiver.getNumbers();
         //then

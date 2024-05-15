@@ -15,7 +15,7 @@ final class LottoResult implements Result {
     private final Set<Integer> randomNumber;
     private final Set<Integer> userHits;
 
-    public static LottoResult getResult(NumberReceiver inputNumbersLoop, NumbersGenerator numbersGenerator) {
+    static LottoResult getResult(NumberReceiver inputNumbersLoop, NumbersGenerator numbersGenerator) {
         LottoHitChecker lottoHitChecker = new LottoHitChecker();
         final Set<Integer> userNumber = inputNumbersLoop.getNumbers();
         final Set<Integer> randomNumber = numbersGenerator.generateRandomNumbers();

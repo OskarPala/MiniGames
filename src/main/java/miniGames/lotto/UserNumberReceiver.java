@@ -10,62 +10,39 @@ import java.util.Set;
 class UserNumberReceiver implements NumberReceiver {
 
     Scanner scanner;
+    UserMessagePrinter userMessagePrinter;
+    InputNumberProcessor inputNumberProcessor;
 
     @Override
     public Set<Integer> getNumbers() {
         Set<Integer> numbersFromUser = new HashSet<>();
+
+
         while (areRemainingNumbersToInput(numbersFromUser)) {
-            System.out.printf("Give %s numbers %n", countRemainingNumbers(numbersFromUser));
-            int givenNumber = getValidNumberFromUser();
-            processGivenNumber(numbersFromUser, givenNumber);
-            printGivenNumbers(numbersFromUser);
+            userMessagePrinter.printPromptForUser(numbersFromUser);
+            int givenNumber = getValidNumberFromUser(userMessagePrinter);
+            boolean addResult = inputNumberProcessor.addNumberIfIsInRange(numbersFromUser, givenNumber);
+            printMessageIfOutOfRangeInput(addResult, givenNumber);
+            userMessagePrinter.printGivenNumbers(numbersFromUser);
         }
         return numbersFromUser;
+    }
+
+    private void printMessageIfOutOfRangeInput(boolean addResult, int givenNumber) {
+        if (!addResult) {
+            userMessagePrinter.printOutOfRangeMessage(givenNumber);
+        }
     }
 
     private boolean areRemainingNumbersToInput(Set<Integer> numbersFromUser) {
         return numbersFromUser.size() < LottoGameConfigurator.NUMBERS_IN_DRAW;
     }
 
-    private int countRemainingNumbers(Set<Integer> numbersFromUser) {
-        return LottoGameConfigurator.NUMBERS_IN_DRAW - numbersFromUser.size();
-    }
-
-    private int getValidNumberFromUser() {
+    private int getValidNumberFromUser(UserMessagePrinter userMessagePrinter) {
         while (!scanner.hasNextInt()) {
-            System.out.printf("Enter an integer in a range %s and %s%n",
-                    LottoGameConfigurator.LOWER_RANGE,
-                    LottoGameConfigurator.HIGH_RANGE);
+            userMessagePrinter.printWrongInputMessage();
             scanner.next();
         }
         return scanner.nextInt();
-    }
-
-    private void processGivenNumber(Set<Integer> numbersFromUser, int givenNumber) {
-        if (isInRange(givenNumber)) {
-            addNumberToList(numbersFromUser, givenNumber);
-        } else {
-            printOutOfRangeMessage(givenNumber);
-        }
-    }
-
-    private boolean isInRange(int givenNumber) {
-        return givenNumber >= LottoGameConfigurator.LOWER_RANGE
-                && givenNumber <= LottoGameConfigurator.HIGH_RANGE;
-    }
-
-    private void addNumberToList(Set<Integer> numbersFromUser, int givenNumber) {
-        numbersFromUser.add(givenNumber);
-    }
-
-    private void printGivenNumbers(Set<Integer> numbersFromUser) {
-        System.out.println("Your given numbers: " + numbersFromUser);
-    }
-
-    private void printOutOfRangeMessage(int givenNumber) {
-        System.out.printf("You provide %s, Please provide number between %s and %s %n",
-                givenNumber,
-                LottoGameConfigurator.LOWER_RANGE,
-                LottoGameConfigurator.HIGH_RANGE);
     }
 }

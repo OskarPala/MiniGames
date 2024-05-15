@@ -1,6 +1,5 @@
 package miniGames.lotto;
 
-import miniGames.MiniGameChooser;
 import miniGames.model.Game;
 
 import java.util.Scanner;
@@ -8,10 +7,17 @@ import java.util.Scanner;
 public class LottoGame implements Game {
     @Override
     public void startGame() {
-        NumberReceiver inputNumbersLoop = new UserNumberReceiver(new Scanner(System.in));
+        NumberReceiver inputNumbersLoop = getInputNumbersLoop();
         NumbersGenerator numbersGenerator = new RandomNumbersGenerator();
         LottoResult lottoResult = LottoResult.getResult(inputNumbersLoop, numbersGenerator);
-        LottoResultPrinter.printResult(lottoResult);
-        MiniGameChooser.gameChooser();
+        ResultPrinter.printResult(lottoResult);
+    }
+
+    private UserNumberReceiver getInputNumbersLoop() {
+        Scanner scanner = new Scanner(System.in);
+        UserMessagePrinter printer = new UserMessagePrinter();
+        InputNumberProcessor numberProcessor = new InputNumberProcessor();
+
+        return new UserNumberReceiver(scanner, printer, numberProcessor);
     }
 }

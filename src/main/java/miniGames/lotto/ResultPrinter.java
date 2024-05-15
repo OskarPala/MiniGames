@@ -1,8 +1,8 @@
 package miniGames.lotto;
 
-class LottoResultPrinter {
+class ResultPrinter {
 
-    public static void printResult(LottoResult result) {
+    static void printResult(LottoResult result) {
         printMessageIfWin(result);
         System.out.printf("You hit %s numbers %n", numberOfHits(result));
         printSetOfHitIfThereAre(result);
